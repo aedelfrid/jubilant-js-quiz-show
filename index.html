@@ -1,39 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset='UTF-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <title>Jubilant JS Quiz Show</title>
-    <link rel="stylesheet" href="assets\CSS\style.css">
+    <link rel='stylesheet' href='assets\CSS\style.css'>
 </head>
 <body>
     <header>
-        <h1>Jubilant JavaScript Quiz Show</h1>
-        <!-- create and append this <h1 id="timer"></h1>-->
+        <div id='title'>
+            <h1>Jubilant <span>JAVASCRIPT</span></h1>
+            <h2><span>QUIZ</span> show</h2>
+        </div>
+        <!-- create and append this <h1 id='timer'></h1>-->
     </header>
     
     <section>
-       <div id="menu">
-            <h1>Welcome to the Jubliant JavaScript Quiz Show!</h1>
-            <p>
-                To start, you will have 1 minute to answer all x questions.
-                If you manage to answer all the questions without running out of time,
-                you may put your initials on our leaderboard!
-            </p>
+       <div id='menu'>
+            <div>
+                <h1>Welcome to the Jubliant JavaScript Quiz Show!</h1>
+                <p>
+                    To start, you will have 1 minute to answer all x questions.
+                    If you manage to answer all the questions without running out of time,
+                    you may put your initials on our leaderboard!
+                </p>
+            </div>
             <h2>Please click the button below to begin</h2>
+        </div>
 
+        <div id='buttons'> 
             <button id="begin">Begin</button>
 
-            <!-- create and append these x4 
-            <div id="answerA"></div>
-            <div id="answerB"></div>
-            <div id="answerC"></div>
-            <div id="answerD"></div>--> 
-
+                <!-- create and append these x4 
+                <div id='answerA'></div>
+                <div id='answerB'></div>
+                <div id='answerC'></div>
+                <div id='answerD'></div>--> 
         </div>
     </section>
 
-    <script src="assets\JS\script.js"></script>
+    <script src='assets\JS\script.js'></script>
 </body>
 </html>
