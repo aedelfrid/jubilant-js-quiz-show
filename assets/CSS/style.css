@@ -4,9 +4,34 @@
     background-color: #F9F5F0;
 }
 
+/*|| Fonts*/
+
+/*Decalotype*/
+
 @font-face {
-    font-family: Merchandise;
-    src: url(assets\Merchandise-X31Za.ttf);
+    font-family:'Decalotype';
+    src: url('../fonts/Decalotype/Decalotype-Regular.ttf') format('truetype')
+        url('../fonts/Decalotype/Decalotype-Regular.woff') format('woff');
+}
+@font-face {
+    font-family:'Decalotype';
+    src: url('../fonts/Decalotype/Decalotype-Bold.ttf') format('truetype');
+    font-weight: bold;
+}
+@font-face {
+    font-family:'Decalotype';
+    src: url('../fonts/Decalotype/Decalotype-Italic.ttf') format('truetype');
+    font-style: italic;
+}
+
+/*Indigo Daisy*/
+
+@font-face {
+    font-family:'indigo-daisy';
+    font-style: normal;
+    font-weight: normal;
+    src: url('../fonts/Indigo-Daisy/Indigo Daisy.ttf') format('truetype');
+    src: url('../fonts/Indigo-Daisy/Indigo Daisy.woff') format('woff');
 }
 
 /*||Header styles*/
@@ -15,13 +40,34 @@ header {
     display: flex;
     background-color: #321313;
     justify-content: center;
+    align-content: center;
     border-radius: 20px;
     box-shadow: 10px 4px 4px #F2EAD3;
 }
 
-header h1 {
+#title {
+    display: flex;
+    justify-content: baseline;
+    background-color: #321313;
+}
+
+#title h1, #title h2 {
+    flex-direction: row;
     color: #F2EAD3;
-    font-family: Merchandise;
+    font-family:'indigo-daisy';
+    background-color: #321313;
+}
+
+#title span {
+    font-family: 'Decalotype';
+    background-color: #321313;
+}
+
+#timer {
+    position: absolute;
+    right: 50px;
+    font-family: 'Decalotype';
+    color: #F2EAD3;
     background-color: #321313;
 }
 
@@ -31,6 +77,7 @@ section {
     display: flex;
     justify-content: center;
     align-content: center;
+    flex-flow:column wrap;
 }
 
 /*menu/gameplay styles*/
@@ -41,36 +88,55 @@ section {
     align-content: center;
     flex-direction: column;
     background-color: #F4991A;
-    height: 550px;
-    width: 800px;
+    height: 250px;
+    width: 700px;
     padding: 10px;
     border-radius: 20px;
     border: 5px solid #321313;
     margin-top: 10%;
-    box-shadow: 10px 4px 4px #F2EAD3;
+    box-shadow: 10px 10px 10px #F2EAD3;
+}
+
+#menu > div {
+    flex-direction: column;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    background-color: #F4991A;
 }
 
 #menu h1, #menu h2 {
     align-self: center;
     background-color: #F4991A;
-    color: #321313;
-    font-family: Merchandise;
+    color: #F2EAD3;
+    font-family:'indigo-daisy';
 }
 
 #menu p {
+    text-indent: 40px;
     background-color: #F4991A;
-    color: #321313;
-    font-family: Arial, Helvetica, sans-serif;
+    margin-left:60px;
+    margin-right:60px;
+    color: #F2EAD3;
+    font-family:'Decalotype';
 }
 
 /*button styles*/
 
-#begin {
+#buttons {
+    display: flex;
+    justify-content: center;
+}
+
+#buttons #begin {
     background-color: #321313;
-    color: #F4991A;
-    font-family: Merchandise;
-    border-radius: 20px;
-    height: 40px;
-    width: 100px;
+    color: #F2EAD3;
+    font-family:'indigo-daisy';
+    font-size: 45px;
+    border-radius: 17px;
+    height: 60px;
+    width: 200px;
     align-self: center;
+    box-shadow: 10px 10px 10px #F2EAD3;
+    margin-top: 50px;
 }

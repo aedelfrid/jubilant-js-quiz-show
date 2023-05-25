@@ -41,13 +41,13 @@ off-white #F9F5F0
 
 ## Mockup
 
-<img src="assets\mockup.png">
+<img src='assets\mockup.png'>
 
 ## Pseudo Code
 
-const questions = "insert question 1 here", "insert question 2 here", "insert question 3 here" "insert question 4 here"
+const questions = 'insert question 1 here', 'insert question 2 here', 'insert question 3 here' 'insert question 4 here'
 
-const answers = "insert answer 1 here", "insert answer 2 here", "insert answer 3 here" "insert answer 4 here"
+const answers = 'insert answer 1 here', 'insert answer 2 here', 'insert answer 3 here' 'insert answer 4 here'
 
 var selectedProblem = 
 question: questions[x]; 
