@@ -121,11 +121,17 @@ section {
     font-family:'Decalotype';
 }
 
+#countdown {
+    font-size: 72px;
+}
+
 /*button styles*/
 
 #buttons {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
+    align-content: space-around;
+    margin-bottom: 200px;
 }
 
 #buttons #begin {
@@ -139,4 +145,19 @@ section {
     align-self: center;
     box-shadow: 10px 10px 10px #F2EAD3;
     margin-top: 50px;
+}
+
+footer {
+    display: flex;
+    background-color: #321313;
+    justify-content: center;
+    align-content: center;
+    border-radius: 20px;
+    box-shadow: 10px 4px 4px #F2EAD3;
+}
+
+footer h1 {
+    background-color: #321313;
+    color: #F2EAD3;
+    font-family:'indigo-daisy';
 }
