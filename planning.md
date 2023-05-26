@@ -63,3 +63,50 @@ function validate() {
 }
 
 
+function questionPresent {
+
+    for (let i = 0; i<questionSelect.length+1; i++) {
+       create 4 buttons
+    };
+
+    var questionSelect [{
+        question: "1. blah blah blah"   
+        answer1:gsdb,
+        answer2:dnfFD,
+        answer3:fnDFN,
+        answer4:fbShFf
+        },
+        { 
+        question:"2. hguyguyg",
+        answer1:gdmzgm,
+        answer2:dnzDG,
+        answer3:gngdn,
+        answer4:gndndfn
+        },
+        {
+        question:"3.iugbiguig",
+        answer1:FnDFnf,
+        answer2:SFhSFh,
+        answer3:dij[hjuohsd],
+        answer4g:zgnfnfn
+        },
+        {
+        question:"4. khigigpiyg" ,
+        answer1:qjgddd,
+        answer2:kldjsjf,
+        answer3:afsadhgrsh,
+        answer4:dfsdsad,
+        }
+    ];
+
+    if (i==questionSelect.length+1) {
+        gameOver()
+    };
+}
+
+
+function gameOver() {
+    var score = time * correct * 10
+        correct:
+        time:
+    }
