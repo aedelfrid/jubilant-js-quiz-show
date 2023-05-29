@@ -9,19 +9,17 @@ var correct = ['gsdb' , 'dnzDG', 'dij[hjuohsd]', 'qjgddd']
 
 var correctCount = 0;
 
-var questionCount = 0;
+var questionIndex = 0;
 
-var timeLeft = 30;
+var timeLeft = 60;
 start();
 
 function start() {
     if (typeof elements.playAgain !== 'undefined') {
-        elements.playAgain.remove()
-        elements.playAgain.removeEventListener('click', start)
-    }
-
-    if (typeof elements.scoreH1 !== 'undefined') {
-        elements.scoreH1.remove()
+        elements.playAgain.remove();
+        elements.playAgain.removeEventListener('click', start);
+        elements.scoreH1.remove(); 
+        elements.timer.textContent = '';
     }
 
     elements.startTextH1 = document.createElement('h1')
@@ -30,7 +28,7 @@ function start() {
 
     elements.startTextP = document.createElement('p')
     elements.mainText.appendChild(elements.startTextP)
-    elements.startTextP.textContent = 'To start, you will have 1 minute to answer all x questions. If you manage to answer all the questions without running out of time, you may put your initials on our leaderboard!'
+    elements.startTextP.textContent = 'To start, you will have 30 seconds to answer all 4 questions. If you manage to answer all the questions without running out of time, you may put your initials on our leaderboard!'
 
     elements.beginText = document.createElement('h2')
     elements.menu.appendChild(elements.beginText)
@@ -113,10 +111,10 @@ function gameStart() {
         timeLeft--;
         elements.timer.textContent = ('Time Left: ' + timeLeft);
 
-        if (timeLeft == 0 && !questionCount == 3) {
+        if (timeLeft == 0 && !questionIndex == 3) {
             clearInterval(timeInterval)
             elements.timer.textContent = 'Out of Time!';
-        } else if (timeLeft == 0 || questionCount == 3) {
+        } else if (timeLeft == 0 || questionIndex == 4) {
             clearInterval(timeInterval)
             elements.timer.textContent = 'Game over!';
             gameOver()
@@ -128,57 +126,53 @@ function gameStart() {
 
 function questionPresent() {
 
-    if (questionCount <= 3 && typeof elements.answer1 == 'undefined') {
+    if (typeof elements.questionText == 'undefined') {
         elements.questionText = document.createElement('h1');
         elements.mainText.appendChild(elements.questionText);
         elements.questionText.setAttribute('id', 'questionText');
-        elements.questionText.textContent = questionSelect[questionCount].question;
+        elements.questionText.textContent = questionSelect[questionIndex].question;
 
         elements.answer1 = document.createElement('button')
         elements.buttons.appendChild(elements.answer1)
-        elements.answer1.setAttribute('id', 'answer1');
         elements.answer1.setAttribute('id', 'buttonsStyle');
-        elements.answer1.textContent = questionSelect[questionCount].answer1;
+        elements.answer1.textContent = questionSelect[questionIndex].answer1;
         elements.answer1.addEventListener('click', validate);
 
         elements.answer2 = document.createElement('button')
         elements.buttons.appendChild(elements.answer2)
-        elements.answer2.setAttribute('id', 'answer2');
-        elements.answer2.setAttribute('id', 'buttonsStyle');
-        elements.answer2.textContent = questionSelect[questionCount].answer2;
+        elements.answer2.setAttribute('id','buttonsStyle');
+        elements.answer2.textContent = questionSelect[questionIndex].answer2;
         elements.answer2.addEventListener('click', validate);
 
         elements.answer3 = document.createElement('button')
         elements.buttons.appendChild(elements.answer3)
-        elements.answer3.setAttribute('id', 'answer3');
         elements.answer3.setAttribute('id', 'buttonsStyle');
-        elements.answer3.textContent = questionSelect[questionCount].answer3;
+        elements.answer3.textContent = questionSelect[questionIndex].answer3;
         elements.answer3.addEventListener('click', validate);
 
         elements.answer4 = document.createElement('button')
         elements.buttons.appendChild(elements.answer4)
-        elements.answer4.setAttribute('id', 'answer4');
         elements.answer4.setAttribute('id', 'buttonsStyle');
-        elements.answer4.textContent = questionSelect[questionCount].answer4;
+        elements.answer4.textContent = questionSelect[questionIndex].answer4;
         elements.answer4.addEventListener('click', validate);
-    } else if (questionCount <= 3 && typeof elements.answer1 !== 'undefined') {
-        elements.questionText.textContent = questionSelect[questionCount].question;
-        elements.answer1.textContent = questionSelect[questionCount].answer1;
-        elements.answer2.textContent = questionSelect[questionCount].answer2;
-        elements.answer3.textContent = questionSelect[questionCount].answer3;
-        elements.answer4.textContent = questionSelect[questionCount].answer4;
+    } else if (typeof elements.questionText !== 'undefined') {
+        elements.questionText.innerText = questionSelect[questionIndex].question;
+        elements.answer1.innerText = questionSelect[questionIndex].answer1;
+        elements.answer2.innerText = questionSelect[questionIndex].answer2;
+        elements.answer3.innerText = questionSelect[questionIndex].answer3;
+        elements.answer4.innerText = questionSelect[questionIndex].answer4;
     }
 }
 
 
 //validate does not validate
-function validate() {
-    if (Event.textContent == correct[questionCount]) {
+function validate(e) {
+    if (e.target.innerText == correct[questionIndex]) {
         correctCount++
-        questionCount++
+        questionIndex++
         questionPresent()
     } else {
-        questionCount++
+        questionIndex++
         timeLeft--
         alert('Sorry, that answer was incorrect')
         questionPresent()
@@ -191,10 +185,28 @@ function gameOver() {
     elements.answer2.remove();
     elements.answer3.remove();
     elements.answer4.remove();
-    //var score = timeLeft * correctCount * 10;
+    elements.questionText = undefined;
+    elements.answer1= undefined;
+    elements.answer2= undefined;
+    elements.answer3= undefined;
+    elements.answer4= undefined;
+    var score = timeLeft * correctCount * 10;
     elements.scoreH1 = document.createElement('h1');
     elements.mainText.appendChild(elements.scoreH1);
-    elements.scoreH1.textContent = `Time left: ${timeLeft} Correct Answers: ${correctCount}/4`;
+    elements.scoreH1.textContent = `Time left: ${timeLeft} Correct Answers: ${correctCount}/4 Score: ${score}`;
+
+    elements.initialsCollect = document.createElement('textarea')
+    elements.mainText.appendChild(elements.initialsCollect)
+
+    elements.submitInitials = document.createElement('button')
+    elements.mainText.appendChild(elements.submitInitials)
+    elements.submitInitials.innerText = 'Submit'
+
+    elements.submitInitials.addEventListener('click',function(){
+
+
+    })
+
     restart();
 } 
 
@@ -206,9 +218,9 @@ function restart() {
     
     correctCount = 0;
 
-    questionCount = 0;
+    questionIndex = 0;
 
-    timeLeft = 30;
+    timeLeft = 60;
     
     elements.playAgain.addEventListener('click', start);
 }
