@@ -45,68 +45,70 @@ off-white #F9F5F0
 
 ## Pseudo Code
 
-const questions = 'insert question 1 here', 'insert question 2 here', 'insert question 3 here' 'insert question 4 here'
+var correct = ['gsdb' , 'dnzDG', 'dij[hjuohsd]', 'qjgddd']
 
-const answers = 'insert answer 1 here', 'insert answer 2 here', 'insert answer 3 here' 'insert answer 4 here'
+var correctCount = 0;
 
-var selectedProblem = 
-question: questions[x]; 
-answer: answers[x];
-
-var correct = question[1]
+var questionCount = 0;
 
 on event.listener(click.answerButton);
 validate();
 
-function validate() {
-    if (answerButton.text == correct) 
+onClick.answerButton function() {
+    if (answerButton.text == correct) {
+        correctCount++
+        questionCount++
+    } else {
+        questionCount++
+        timeleft--
+        alert('Sorry, that answer was incorrect')
+    }
 }
 
 
 function questionPresent {
 
-    for (let i = 0; i<questionSelect.length+1; i++) {
-       create 4 buttons
-    };
+    if (questionCount <= questionSelect.length) {
+        var questionText = document.createElement('h1');
+        mainText.appendChild(questionText);
+        questionText.textContent = questionSelect[questionCount].question;
+    } else {
+        gameOver()
+    }
+    
 
     var questionSelect [{
-        question: "1. blah blah blah"   
+        question: '1. blah blah blah'   
         answer1:gsdb,
         answer2:dnfFD,
         answer3:fnDFN,
         answer4:fbShFf
         },
         { 
-        question:"2. hguyguyg",
+        question:'2. hguyguyg',
         answer1:gdmzgm,
         answer2:dnzDG,
         answer3:gngdn,
         answer4:gndndfn
         },
         {
-        question:"3.iugbiguig",
+        question:'3.iugbiguig',
         answer1:FnDFnf,
         answer2:SFhSFh,
         answer3:dij[hjuohsd],
         answer4g:zgnfnfn
         },
         {
-        question:"4. khigigpiyg" ,
+        question:'4. khigigpiyg' ,
         answer1:qjgddd,
         answer2:kldjsjf,
         answer3:afsadhgrsh,
         answer4:dfsdsad,
         }
     ];
-
-    if (i==questionSelect.length+1) {
-        gameOver()
-    };
 }
 
 
 function gameOver() {
-    var score = time * correct * 10
-        correct:
-        time:
-    }
+    var score = timeLeft * correctCount * 10;
+}
