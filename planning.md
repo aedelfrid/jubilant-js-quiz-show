@@ -49,7 +49,7 @@ var correct = ['gsdb' , 'dnzDG', 'dij[hjuohsd]', 'qjgddd']
 
 var correctCount = 0;
 
-var questionCount = 0;
+var questionIndex = 0;
 
 on event.listener(click.answerButton);
 validate();
@@ -57,9 +57,9 @@ validate();
 onClick.answerButton function() {
     if (answerButton.text == correct) {
         correctCount++
-        questionCount++
+        questionIndex++
     } else {
-        questionCount++
+        questionIndex++
         timeleft--
         alert('Sorry, that answer was incorrect')
     }
@@ -68,10 +68,10 @@ onClick.answerButton function() {
 
 function questionPresent {
 
-    if (questionCount <= questionSelect.length) {
+    if (questionIndex <= questionSelect.length) {
         var questionText = document.createElement('h1');
         mainText.appendChild(questionText);
-        questionText.textContent = questionSelect[questionCount].question;
+        questionText.textContent = questionSelect[questionIndex].question;
     } else {
         gameOver()
     }
