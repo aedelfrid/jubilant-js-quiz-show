@@ -4,8 +4,13 @@ elements.menu = document.querySelector('#menu')
 elements.header = document.querySelector('header')
 elements.buttons = document.querySelector('#buttons')
 elements.mainText = document.querySelector('#main-text')
+elements.gameArea = document.querySelector('#game')
 
 var correct = ['gsdb' , 'dnzDG', 'dij[hjuohsd]', 'qjgddd']
+
+var initials = [];
+
+var scoreStore = [];
 
 var correctCount = 0;
 
@@ -15,11 +20,42 @@ var timeLeft = 60;
 start();
 
 function start() {
+
+    var storedInitials = JSON.parse(localStorage.getItem('initials'))
+    var storedScore = [JSON.parse(localStorage.getItem('score'))]
+
+    if(storedScore !== null || storedInitials !== null) {
+        initials = storedInitials;
+        scoreStore = storedScore;
+    }
+
     if (typeof elements.playAgain !== 'undefined') {
         elements.playAgain.remove();
         elements.playAgain.removeEventListener('click', start);
         elements.scoreH1.remove(); 
         elements.timer.textContent = '';
+        elements.initialsCollect.remove()
+        elements.submitInitials.remove()
+        elements.li.remove()
+    } else {
+        elements.highScores = document.createElement('ul')
+        elements.highScores.setAttribute('id','highScores')
+        elements.gameArea.appendChild(elements.highScores)
+    }
+
+    
+    if (initials !== null) {
+        for (let i=0; i<initials.length; i++){
+            let initial = initials[i]
+            let score = storedScore[i]
+
+            elements.li = document.createElement('li')
+            elements.highScores.appendChild(elements.li)
+            elements.li.textContent = `Initials: ${initial} Score: ${score}`
+            elements.li.setAttribute('data-index', i)
+        }
+    } else {
+        initials = ['']
     }
 
     elements.startTextH1 = document.createElement('h1')
@@ -28,7 +64,7 @@ function start() {
 
     elements.startTextP = document.createElement('p')
     elements.mainText.appendChild(elements.startTextP)
-    elements.startTextP.textContent = 'To start, you will have 30 seconds to answer all 4 questions. If you manage to answer all the questions without running out of time, you may put your initials on our leaderboard!'
+    elements.startTextP.textContent = 'To start, you will have 1 minute to answer all 4 questions. If you manage to answer all the questions without running out of time, you may put your initials on our leaderboard!'
 
     elements.beginText = document.createElement('h2')
     elements.menu.appendChild(elements.beginText)
@@ -190,21 +226,48 @@ function gameOver() {
     elements.answer2= undefined;
     elements.answer3= undefined;
     elements.answer4= undefined;
-    var score = timeLeft * correctCount * 10;
+    var scoreCalc = timeLeft * correctCount * 10;
     elements.scoreH1 = document.createElement('h1');
     elements.mainText.appendChild(elements.scoreH1);
-    elements.scoreH1.textContent = `Time left: ${timeLeft} Correct Answers: ${correctCount}/4 Score: ${score}`;
+    elements.scoreH1.textContent = `Time left: ${timeLeft} Correct Answers: ${correctCount}/4 Score: ${scoreCalc}`;
 
     elements.initialsCollect = document.createElement('textarea')
+    elements.initialsCollect.setAttribute('id','initialsCollect')
     elements.mainText.appendChild(elements.initialsCollect)
 
     elements.submitInitials = document.createElement('button')
+    elements.submitInitials.setAttribute('id','buttonsStyle')
     elements.mainText.appendChild(elements.submitInitials)
     elements.submitInitials.innerText = 'Submit'
 
-    elements.submitInitials.addEventListener('click',function(){
+    elements.submitInitials.addEventListener('click',function(e){
+        e.preventDefault();
 
+        var initialsText = initialsCollect.value.trim();
 
+        if (initialsText === '') {
+            alert('Please enter your initials.')
+            return;
+        } else {
+            alert('High Score added successfully!')
+        }
+
+        initials.push(initialsText);
+        if (initials[0] === '') {
+            initials.pop()
+        }
+        scoreStore.push(scoreCalc);
+
+        localStorage.setItem('initials',JSON.stringify(initials))
+        localStorage.setItem('score', JSON.stringify(scoreStore))
+
+        correctCount = 0;
+
+        questionIndex = 0;
+
+        timeLeft = 60;
+
+        start();
     })
 
     restart();
