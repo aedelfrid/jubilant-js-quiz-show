@@ -97,7 +97,7 @@ var questionSelect = [
         answer1:'The top.',
         answer2:'The bottom.',
         answer3:'The middle.',
-        answer4:'You don`t need to reference the script.'
+        answer4:'None of the above.'
     },
     {
         question:'3. Which of the following methods allows you to add to an array?',

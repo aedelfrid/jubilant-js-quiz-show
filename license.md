@@ -1,30 +1,3 @@
-# Jubilant JS Quiz Show
-
-The Jubilant JS Quiz Show is a demonstration of basic javascript and DOM manipulation. In the quiz there are a few basic javascript questions, a prompt to answer the question,
-a timer, and high scores may be stored in the local storage,
-
-## Usage
-
-To play the Jubilant JS Quiz Show please go to the URL below.
-
-https://aedelfrid.github.io/jubilant-js-quiz-show/
-
-## Screenshots
-
-### Begin
-
-<img src='assets\images\begin.png'>
-
-### Playing
-
-<img src='assets\images\playing.png'>
-
-### Initials
-
-<img src='assets\images\initials.png'>
-
-## License
-
 MIT License
 
 Copyright (c) 2023 aedelfrid
