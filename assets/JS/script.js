@@ -6,7 +6,7 @@ elements.buttons = document.querySelector('#buttons')
 elements.mainText = document.querySelector('#main-text')
 elements.gameArea = document.querySelector('#game')
 
-var correct = ['gsdb' , 'dnzDG', 'dij[hjuohsd]', 'qjgddd']
+var correct = ['array = []' , 'The bottom.', 'push()', 'i >= x']
 
 var initials = [];
 
@@ -22,12 +22,18 @@ start();
 function start() {
 
     var storedInitials = JSON.parse(localStorage.getItem('initials'))
-    var storedScore = [JSON.parse(localStorage.getItem('score'))]
+    var storedScore = JSON.parse(localStorage.getItem('score'))
 
     if(storedScore !== null || storedInitials !== null) {
         initials = storedInitials;
         scoreStore = storedScore;
     }
+
+    if(elements.li) {
+        elements.li.remove();
+    }
+
+        
 
     if (typeof elements.playAgain !== 'undefined') {
         elements.playAgain.remove();
@@ -36,11 +42,13 @@ function start() {
         elements.timer.textContent = '';
         elements.initialsCollect.remove()
         elements.submitInitials.remove()
-        elements.li.remove()
     } else {
-        elements.highScores = document.createElement('ul')
+        elements.scoreBox = document.createElement('div')
+        elements.scoreBox.setAttribute('id', 'scoreBox')
+        elements.gameArea.appendChild(elements.scoreBox)
+        elements.highScores = document.createElement('ol')
         elements.highScores.setAttribute('id','highScores')
-        elements.gameArea.appendChild(elements.highScores)
+        elements.scoreBox.appendChild(elements.highScores)
     }
 
     
@@ -54,8 +62,6 @@ function start() {
             elements.li.textContent = `Initials: ${initial} Score: ${score}`
             elements.li.setAttribute('data-index', i)
         }
-    } else {
-        initials = ['']
     }
 
     elements.startTextH1 = document.createElement('h1')
@@ -80,32 +86,32 @@ function start() {
 
 var questionSelect = [
     {
-        question: '1. blah blah blah',
-        answer1: 'gsdb',
-        answer2: 'dnfFD',
-        answer3: 'fnDFN',
-        answer4: 'fbShFf',
+        question: '1. Which of the following is an array?',
+        answer1: 'array = "";',
+        answer2: 'array = {};',
+        answer3: 'array = []',
+        answer4: 'array = ()',
     },
     { 
-        question:'2. hguyguyg',
-        answer1:'gdmzgm',
-        answer2:'dnzDG',
-        answer3:'gngdn',
-        answer4:'gndndfn'
+        question:'2. Generally where in an HTML document should the script file be referenced?',
+        answer1:'The top.',
+        answer2:'The bottom.',
+        answer3:'The middle.',
+        answer4:'You don`t need to reference the script.'
     },
     {
-        question:'3.iugbiguig',
-        answer1:'FnDFnf',
-        answer2:'SFhSFh',
-        answer3:'dij[hjuohsd]',
-        answer4:'zgnfnfn'
+        question:'3. Which of the following methods allows you to add to an array?',
+        answer1:'push()',
+        answer2:'pop()',
+        answer3:'splice()',
+        answer4:'join()'
     },
     {
-        question:'4. khigigpiyg' ,
-        answer1:'qjgddd',
-        answer2:'kldjsjf',
-        answer3:'afsadhgrsh',
-        answer4:'dfsdsad',
+        question:'4. Which of the following logical comparisons means "less than or equal to"?' ,
+        answer1:'i == x',
+        answer2:'i !== x',
+        answer3:'i >= x',
+        answer4:'i + x',
     }
 ]
 
@@ -200,8 +206,6 @@ function questionPresent() {
     }
 }
 
-
-//validate does not validate
 function validate(e) {
     if (e.target.innerText == correct[questionIndex]) {
         correctCount++
@@ -253,9 +257,6 @@ function gameOver() {
         }
 
         initials.push(initialsText);
-        if (initials[0] === '') {
-            initials.pop()
-        }
         scoreStore.push(scoreCalc);
 
         localStorage.setItem('initials',JSON.stringify(initials))
